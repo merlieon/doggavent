@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    </head>
+    <body>
+    <header>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li class="current"><a href="/animals">Animals</a></li>
+        </ul>
+    </header>
+    <!--/*@thymesVar id="allAnimals" type=""*/-->
+    <table >
+        <tbody class="animalTable">
+            <tr th:each="animals : ${allAnimals}">
+                <td><a th:href="'/animals/' + ${#strings.toLowerCase(animals.animal_name)}" th:text="${animals.animal_name}"></a></td>
+                <td th:text="${animals.id}"></td>
+            </tr>
+        </tbody>
+    </table>
+    </body>
+</html>
