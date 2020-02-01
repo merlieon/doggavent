@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +34,20 @@ public class AnimalService {
                 animal = new Animals(id, name, description);
             }
         }
+        return animal;
+    }
+
+    public Animals getAnimalById(int id){
+        Predicate<Animals> byid = a -> a.getId().equals(id);
+        return filterAnimals(byid);
+    }
+
+    private Animals filterAnimals(Predicate<Animals> strategy){
+        return getAnimals().stream().filter(strategy).findFirst().orElse(null);
+    }
+
+    public Animals addAnimal(Animals animal){
+        animal = animalRepository.save(animal);
         return animal;
     }
 }
