@@ -18,7 +18,7 @@ public class AnimalsControllerApi {
     @Autowired
     AnimalService animalService;
 
-    @GetMapping(value = "/api/animals", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/api/animals", produces = MediaType.APPLICATION_XML_VALUE)
     public List<Animals> getAllAnimals(){
         return animalService.getAnimals();
     }
