@@ -30,13 +30,13 @@ public class AnimalController {
         return animalService.getAnimals();
     }
 
-    @RequestMapping("/animals")
-    String addanimal(Model model) throws URISyntaxException, SQLException {
+    @RequestMapping("/db")
+    @ResponseBody
+    String addanimal() throws URISyntaxException, SQLException {
         Connection conn = DBManager.getConnection();
 
         DBManager.updateQuery(conn, "INSERT INTO animals (animal_name,animal_description) VALUES ('dog', 'this is a dog')");
         String get = DBManager.selectQuery(conn,"SELECT * FROM animals");
-        model.addAttribute("animal", get);
         return get;
 
     }
