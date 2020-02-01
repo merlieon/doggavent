@@ -18,13 +18,13 @@ public class AnimalsControllerApi {
     @Autowired
     AnimalService animalService;
 
-    @GetMapping(value = "/api/animals", produces = MediaType.APPLICATION_XML_VALUE)
-    public List<Animals> getAllAnimals(){
+    @GetMapping(value = "/api/xml/animals", produces = MediaType.APPLICATION_XML_VALUE)
+    public List<Animals> getAllAnimalsXml(){
         return animalService.getAnimals();
     }
 
-    @GetMapping("/api/animals/{id}")
-    public ResponseEntity<Animals> getAnimalById(@PathVariable int id){
+    @GetMapping(value = "/api/xml/animals/{id}"m produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<Animals> getAnimalByIdXml(@PathVariable int id){
         Animals animals = animalService.getAnimalById(id);
         if (animals == null){
             return new ResponseEntity<Animals>(HttpStatus.NOT_FOUND);
@@ -32,4 +32,17 @@ public class AnimalsControllerApi {
         return new ResponseEntity<Animals>(animals, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/api/json/animals", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Animals> getAllAnimalsJson(){
+        return animalService.getAnimals();
+    }
+
+    @GetMapping(value = "/api/json/animals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Animals> getAnimalByIdJson(@PathVariable int id){
+        Animals animals = animalService.getAnimalById(id);
+        if (animals == null){
+            return new ResponseEntity<Animals>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Animals>(animals, HttpStatus.OK);
+    }
 }
