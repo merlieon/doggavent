@@ -23,7 +23,7 @@ public class AnimalsControllerApi {
         return animalService.getAnimals();
     }
 
-    @GetMapping(value = "/api/xml/animals/{id}"m produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/api/xml/animals/{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Animals> getAnimalByIdXml(@PathVariable int id){
         Animals animals = animalService.getAnimalById(id);
         if (animals == null){
