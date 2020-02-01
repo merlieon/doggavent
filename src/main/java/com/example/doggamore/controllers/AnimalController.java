@@ -1,5 +1,6 @@
 package com.example.doggamore.controllers;
 
+import com.example.doggamore.database.DBManager;
 import com.example.doggamore.models.Animals;
 import com.example.doggamore.repositories.AnimalRepository;
 import com.example.doggamore.services.AnimalService;
@@ -8,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Map;
 
 @Controller
@@ -25,11 +31,12 @@ public class AnimalController {
     }
 
     @PostMapping("/animals")
-    public Animals addAnimals (@RequestBody String id, @RequestBody Map<String, String> body){
-        String name = body.get("animal_name");
+    public void addanimal() throws URISyntaxException, SQLException {
+        Connection conn = DBManager.getConnection();
 
-        return animalRepository.save(new Animals(1,"dog","this is a dog"));
+        DBManager.updateQuery(conn, "INSERT INTO animals (animal_name,animal_description) VALUES ('dog', 'this is a dog')");
     }
+
 
     @GetMapping("/animals/{animal_name}")
     public String getAnimal(@PathVariable String animal_name,Model model){
