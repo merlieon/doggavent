@@ -15,6 +15,12 @@ public class AnimalsControllerApi {
     @Autowired
     AnimalService animalService;
 
+    @GetMapping("/api")
+    public String getApi(){
+        return "api";
+    }
+
+
     @GetMapping("/api/animals")
     public List<Animals> getAllAnimals(){
         return animalService.getAnimals();
