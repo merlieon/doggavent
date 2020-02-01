@@ -23,18 +23,22 @@ public class AnimalController {
 
     @Autowired
     AnimalRepository animalRepository;
-    @GetMapping("/animals")
+   @GetMapping("/animals")
     public  Iterable<Animals> getAllAnimals(Model model){
 
         model.addAttribute("allAnimals", animalService.getAnimals());
         return animalService.getAnimals();
     }
 
-    @PostMapping("/animals")
-    public void addanimal() throws URISyntaxException, SQLException {
+    @RequestMapping("/animals")
+    String addanimal(Model model) throws URISyntaxException, SQLException {
         Connection conn = DBManager.getConnection();
 
         DBManager.updateQuery(conn, "INSERT INTO animals (animal_name,animal_description) VALUES ('dog', 'this is a dog')");
+        String get = DBManager.selectQuery(conn,"SELECT * FROM animals");
+        model.addAttribute("animal", get);
+        return get;
+
     }
 
 
