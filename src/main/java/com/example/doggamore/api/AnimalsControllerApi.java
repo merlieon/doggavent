@@ -9,7 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AnimalsControllerApi {
@@ -52,11 +54,11 @@ public class AnimalsControllerApi {
         return new ResponseEntity<Animals>(animals, HttpStatus.OK);
     }
 
+    Map<Integer, Animals> anidata = new HashMap<Integer, Animals>();
+
     @PostMapping("/animals/add")
     public Animals addAnimal(@RequestBody  Animals newAnimal){
-        newAnimal.setId(23);
-        newAnimal.setAnimal_name("duck");
-        animalRepository.save(newAnimal);
-        return animalRepository.save(newAnimal);
+        anidata.put(newAnimal.getId(), newAnimal);
+        return newAnimal;
     }
 }
