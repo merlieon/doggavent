@@ -17,6 +17,11 @@ public class AnimalType {
 
     }
 
+    public AnimalType(int id, String animal_type){
+        this.id = id;
+        this.animal_type = animal_type;
+    }
+
     public Integer getId() {
         return id;
     }

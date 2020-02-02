@@ -18,8 +18,8 @@ public class AnimalController {
    @GetMapping("/animals")
     public  Iterable<Animals> getAllAnimals(Model model){
 
-        model.addAttribute("allAnimals", animalService.getAnimals());
-        return animalService.getAnimals();
+        model.addAttribute("allAnimals", animalService.getAllAnimals());
+        return animalService.getAllAnimals();
     }
 
     @GetMapping("/animals/{animal_name}")

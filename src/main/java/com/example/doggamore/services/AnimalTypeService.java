@@ -23,17 +23,17 @@ public class AnimalTypeService {
     }
 
     // Making the list public
-    public List<AnimalType> getAllAnimalType(){
+    public List<AnimalType> getAllAnimalTypes(){
         return animalType();
     }
 
     // returning animaltype by id
     public AnimalType getAnimalById(int id){
-        Predicate<AnimalType> byid = a -> a.getId().equals(id);
+        Predicate<AnimalType> byid = at -> at.getId().equals(id);
         return filterAnimalType(byid);
     }
 
     private AnimalType filterAnimalType(Predicate<AnimalType> strategy){
-        return getAllAnimalType().stream().filter(strategy).findFirst().orElse(null);
+        return getAllAnimalTypes().stream().filter(strategy).findFirst().orElse(null);
     }
 }

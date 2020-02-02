@@ -21,7 +21,7 @@ public class AnimalService {
     }
 
     // making list public
-    public List<Animals> getAnimals(){
+    public List<Animals> getAllAnimals(){
         return animals();
     }
 
@@ -46,7 +46,7 @@ public class AnimalService {
     }
 
     private Animals filterAnimals(Predicate<Animals> strategy){
-        return getAnimals().stream().filter(strategy).findFirst().orElse(null);
+        return getAllAnimals().stream().filter(strategy).findFirst().orElse(null);
     }
 
     // Adding new animal

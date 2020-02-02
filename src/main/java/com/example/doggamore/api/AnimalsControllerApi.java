@@ -21,7 +21,7 @@ public class AnimalsControllerApi {
     //Returning Animals to XML format
     @GetMapping(value = "/api/xml/animals", produces = MediaType.APPLICATION_XML_VALUE)
     public List<Animals> getAllAnimalsXml(){
-        return animalService.getAnimals();
+        return animalService.getAllAnimals();
     }
 
     //Returning one Animal by id to XML format
@@ -37,7 +37,7 @@ public class AnimalsControllerApi {
     //Returning Animals to JSON format
     @GetMapping(value = "/api/json/animals", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Animals> getAllAnimalsJson(){
-        return animalService.getAnimals();
+        return animalService.getAllAnimals();
     }
 
     //Returning one Animal by id to JSON format

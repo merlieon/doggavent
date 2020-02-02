@@ -21,12 +21,12 @@ public class AnimalTypeControllerApi {
     //Returning all AnimalTypes to XML format
     @GetMapping(value = "/api/xml/animaltypes", produces = MediaType.APPLICATION_XML_VALUE)
     public List<AnimalType> getAllAnimalTypesXml(){
-        return animalTypeService.getAllAnimalType();
+        return animalTypeService.getAllAnimalTypes();
     }
 
     //Returning one AnimalType by id to XML format
     @GetMapping(value = "/api/xml/AnimalType/{id}", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<AnimalType> getUserByIdXml(@PathVariable int id){
+    public ResponseEntity<AnimalType> getAnimalTypeByIdXml(@PathVariable int id){
         AnimalType animalType = animalTypeService.getAnimalById(id);
         if (animalType == null){
             return new ResponseEntity<AnimalType>(HttpStatus.NOT_FOUND);
@@ -37,7 +37,7 @@ public class AnimalTypeControllerApi {
     //Returning all AnimalType to JSON format
     @GetMapping(value = "/api/json/animaltypes", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<AnimalType> getAllAnimalTypesJson(){
-        return animalTypeService.getAllAnimalType();
+        return animalTypeService.getAllAnimalTypes();
     }
 
     //Returning one AnimalType by id to JSON format
