@@ -25,7 +25,7 @@ public class AnimalTypeControllerApi {
     }
 
     //Returning one AnimalType by id to XML format
-    @GetMapping(value = "/api/xml/AnimalType/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/api/xml/animaltype/{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<AnimalType> getAnimalTypeByIdXml(@PathVariable int id){
         AnimalType animalType = animalTypeService.getAnimalById(id);
         if (animalType == null){
