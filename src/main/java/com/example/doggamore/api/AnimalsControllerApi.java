@@ -59,6 +59,6 @@ public class AnimalsControllerApi {
     @PostMapping("/animals/add")
     public Animals addAnimal(@RequestBody  Animals newAnimal){
         anidata.put(newAnimal.getId(), newAnimal);
-        return newAnimal;
+        return animalRepository.save(newAnimal);
     }
 }
