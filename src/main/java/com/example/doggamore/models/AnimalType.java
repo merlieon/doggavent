@@ -13,6 +13,10 @@ public class AnimalType {
     int id;
     String animal_type;
 
+    public AnimalType(){
+
+    }
+
     public int getId() {
         return id;
     }

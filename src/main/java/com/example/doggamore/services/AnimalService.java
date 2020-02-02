@@ -2,6 +2,7 @@ package com.example.doggamore.services;
 
 import com.example.doggamore.models.Animals;
 import com.example.doggamore.repositories.AnimalRepository;
+import com.example.doggamore.repositories.Animal_TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class AnimalService {
+
+    @Autowired
+    Animal_TypeRepository animal_typeRepository;
 
     @Autowired
     AnimalRepository animalRepository;

@@ -1,6 +1,5 @@
 package com.example.doggamore.controllers;
 
-import com.example.doggamore.database.DBManager;
 import com.example.doggamore.models.Animals;
 import com.example.doggamore.repositories.AnimalRepository;
 import com.example.doggamore.services.AnimalService;
@@ -8,13 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Map;
 
 @Controller
 public class AnimalController {
