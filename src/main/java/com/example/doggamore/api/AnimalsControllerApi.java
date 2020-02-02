@@ -1,6 +1,7 @@
 package com.example.doggamore.api;
 
 import com.example.doggamore.models.Animals;
+import com.example.doggamore.repositories.AnimalRepository;
 import com.example.doggamore.services.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class AnimalsControllerApi {
 
     @Autowired
     AnimalService animalService;
+
+    @Autowired
+    AnimalRepository animalRepository;
 
     //Returning Animals to XML format
     @GetMapping(value = "/api/xml/animals", produces = MediaType.APPLICATION_XML_VALUE)
@@ -50,7 +54,9 @@ public class AnimalsControllerApi {
 
     @PostMapping("/animals/add")
     public Animals addAnimal(@RequestBody  Animals newAnimal){
-        animalService.addAnimal(newAnimal);
-        return animalService.getAnimalById(newAnimal.getId());
+        newAnimal.setId(23);
+        newAnimal.setAnimal_name("duck");
+        animalRepository.save(newAnimal);
+        return newAnimal;
     }
 }
