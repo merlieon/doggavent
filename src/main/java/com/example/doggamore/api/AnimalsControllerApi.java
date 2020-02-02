@@ -50,6 +50,7 @@ public class AnimalsControllerApi {
 
     @PostMapping("/animals/add")
     public Animals addAnimal(@RequestBody  Animals newAnimal){
-        return animalService.addAnimal(newAnimal);
+        animalService.addAnimal(newAnimal);
+        return animalService.getAnimalById(newAnimal.getId());
     }
 }

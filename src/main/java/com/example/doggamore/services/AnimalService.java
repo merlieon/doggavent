@@ -52,6 +52,6 @@ public class AnimalService {
     public Animals addAnimal(Animals newAnimal){
         newAnimal.setId(23);
         newAnimal.setAnimal_name("cow");
-        return  newAnimal;
+        return  animalRepository.save(newAnimal);
     }
 }
