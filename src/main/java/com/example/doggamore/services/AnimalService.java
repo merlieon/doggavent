@@ -49,9 +49,9 @@ public class AnimalService {
         return getAllAnimals().stream().filter(strategy).findFirst().orElse(null);
     }
 
-    // Adding new animal
-    public Animals addAnimal(Animals animal){
-        animal = animalRepository.save(animal);
-        return animal;
+    public Animals addAnimal(Animals newAnimal){
+        newAnimal.setId(23);
+        newAnimal.setAnimal_name("cow");
+        return  newAnimal;
     }
 }
