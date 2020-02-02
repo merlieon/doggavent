@@ -33,7 +33,9 @@ li a:hover{
 }
 
 
+
 .animalTable{
     color: #E2E2E2;
     width: 100%;
+    float: left;
 }
