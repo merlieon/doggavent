@@ -2,32 +2,30 @@ package com.example.doggamore.services;
 
 import com.example.doggamore.models.Animals;
 import com.example.doggamore.repositories.AnimalRepository;
-import com.example.doggamore.repositories.Animal_TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Service
 public class AnimalService {
 
     @Autowired
-    Animal_TypeRepository animal_typeRepository;
-
-    @Autowired
     AnimalRepository animalRepository;
 
+    // Retruning animal list
     private List<Animals> animals(){
         List<Animals> animalsList = (List<Animals>) animalRepository.findAll();
         return animalsList;
     }
 
+    // making list public
     public List<Animals> getAnimals(){
         return animals();
     }
 
+    // Getting animals to just get one animal
     Animals animal;
     public Animals getAnimal(String name){
         for (Animals a : animals()){
@@ -41,6 +39,7 @@ public class AnimalService {
         return animal;
     }
 
+    // Getting animals by id
     public Animals getAnimalById(int id){
         Predicate<Animals> byid = a -> a.getId().equals(id);
         return filterAnimals(byid);
@@ -50,6 +49,7 @@ public class AnimalService {
         return getAnimals().stream().filter(strategy).findFirst().orElse(null);
     }
 
+    // Adding new animal
     public Animals addAnimal(Animals animal){
         animal = animalRepository.save(animal);
         return animal;

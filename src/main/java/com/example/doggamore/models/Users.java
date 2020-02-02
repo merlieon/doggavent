@@ -1,28 +1,46 @@
 package com.example.doggamore.models;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    Integer id;
     String username;
     String password;
     String email;
-    String date;
+    Date date;
 
     public Users(){
 
     }
 
-    public int getId() {
+    public Users(Integer id, String username, String password, String email, Date date){
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.date = date;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getUsername() {
@@ -49,11 +67,5 @@ public class Users {
         this.email = email;
     }
 
-    public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 }
