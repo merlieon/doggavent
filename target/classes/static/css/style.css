@@ -1,5 +1,6 @@
 body{
     background-image: url("/images/background.jpg");
+    color: #E2E2E2;
 }
 
 ul{
@@ -31,10 +32,8 @@ li a:hover{
     color: lightslategrey;
 }
 
-table{
-    width: 100%;
-}
-
 .animalTable{
     color: #E2E2E2;
+    width: 100%;
+    float: left;
 }

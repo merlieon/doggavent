@@ -57,6 +57,6 @@ public class AnimalsControllerApi {
         newAnimal.setId(23);
         newAnimal.setAnimal_name("duck");
         animalRepository.save(newAnimal);
-        return newAnimal;
+        return animalRepository.save(newAnimal);
     }
 }
