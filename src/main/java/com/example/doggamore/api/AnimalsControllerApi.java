@@ -56,14 +56,8 @@ public class AnimalsControllerApi {
         return new ResponseEntity<Animals>(animals, HttpStatus.OK);
     }
 
-    Map<Integer, Animals> anidata = new HashMap<Integer, Animals>();
-
     @PostMapping("/animals/add")
-    public ResponseEntity<Object    > addAnimal(@RequestBody Animals newAnimal){
-        Animals createdAnimal = animalRepository.save(newAnimal);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdAnimal.getId()).toUri();
-
-        return ResponseEntity.created(location).build();
+    public Animals addAnimal(@RequestBody Animals newAnimal){
+        return animalRepository.save(newAnimal);
     }
 }
