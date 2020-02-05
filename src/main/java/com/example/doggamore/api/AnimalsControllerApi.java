@@ -62,16 +62,17 @@ public class AnimalsControllerApi {
     }
 
     @PutMapping("/animals{id}")
-    public ResponseEntity<Animal> editAnimal(@Valid @RequestBody Animal animal, @PathVariable long id){
-        Optional<Animal> animalOptional = animalRepository.findById(id);
+    public Animal editAnimal(@Valid @RequestBody Animal updatedAnimal, @PathVariable long id){
 
-        if (!animalOptional.isPresent())
-            return ResponseEntity.notFound().build();
+        return animalRepository.findById(id).map(animal ->{
+            animal.setAnimal_name(updatedAnimal.getAnimal_name());
+            animal.setAnimal_description(updatedAnimal.getAnimal_description());
+            return animalRepository.save(animal);
+        }).orElseGet(() -> {
+            updatedAnimal.setId(id);
+            return animalRepository.save(updatedAnimal);
+        });
 
-        animal.setId(id);
-
-        animalRepository.save(animal);
-        return ResponseEntity.noContent().build();
 
     }
 
