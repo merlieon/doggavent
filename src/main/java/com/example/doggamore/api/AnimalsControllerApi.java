@@ -3,8 +3,6 @@ package com.example.doggamore.api;
 import com.example.doggamore.models.Animal;
 import com.example.doggamore.repositories.AnimalRepository;
 import com.example.doggamore.services.AnimalService;
-import javafx.application.Application;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.http.HttpStatus;
@@ -64,7 +62,7 @@ public class AnimalsControllerApi {
         return animalRepository.save(newAnimal);
     }
 
-    @RequestMapping(value = "/animals/{id}", method = RequestMethod.PUT, produces = "application/json")
+    @PutMapping("/animals/{id}")
     public Animal editAnimal(@Valid @RequestBody Animal updatedAnimal, @PathVariable long id){
 
         return animalRepository.findById(id).map(animal ->{
