@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -56,7 +58,27 @@ public class AnimalsControllerApi {
 
     @PostMapping("/add")
     public Animal addAnimal(@Valid @RequestBody Animal newAnimal){
-        Animal a1 = newAnimal;
         return animalRepository.save(newAnimal);
     }
+
+    @PutMapping("/animals{id}")
+    public ResponseEntity<Animal> editAnimal(@Valid @RequestBody Animal animal, @PathVariable long id){
+        Optional<Animal> animalOptional = animalRepository.findById(id);
+
+        if (!animalOptional.isPresent())
+            return ResponseEntity.notFound().build();
+
+        animal.setId(id);
+
+        animalRepository.save(animal);
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @DeleteMapping("/animals/{id}")
+    public void deleteAnimal(@PathVariable long id){
+        animalRepository.deleteById(id);
+    }
+
+
 }
