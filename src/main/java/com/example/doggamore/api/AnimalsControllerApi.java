@@ -61,7 +61,13 @@ public class AnimalsControllerApi {
     @PostMapping("/add")
     public Animals addAnimal(@Valid @RequestBody Animals newAnimal){
         Animals a1 = newAnimal;
-        animalRepository.save(newAnimal);
+       try {
+           animalRepository.save(newAnimal);
+           System.out.println(a1);
+       } catch (Exception e){
+           System.out.println(e);
+       }
+
         return a1;
     }
 }
