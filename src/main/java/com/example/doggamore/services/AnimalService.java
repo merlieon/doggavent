@@ -31,7 +31,7 @@ public class AnimalService {
         for (Animals a : animals()){
             if (a.getAnimal_name().toLowerCase().equals(name)){
                 name = a.getAnimal_name();
-                Integer id = a.getId();
+                Long id = a.getId();
                 String description = a.getAnimal_description();
                 animal = new Animals(id, name, description);
             }

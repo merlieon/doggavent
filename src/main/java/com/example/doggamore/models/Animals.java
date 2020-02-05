@@ -11,26 +11,33 @@ public class Animals implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column (name = "id")
+    private Long id;
+
+    @Column(name = "animal_name")
     private String animal_name;
+
+    @Column(name = "animal_description")
     private String animal_description;
+
+    @Column(name = "animal_type_id")
     private Integer animal_type_id;
 
     public Animals(){
 
     }
 
-    public Animals(Integer id, String animal_name, String animal_description){
+    public Animals(Long id, String animal_name, String animal_description){
         this.id = id;
         this.animal_name = animal_name;
         this.animal_description = animal_description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
