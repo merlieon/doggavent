@@ -60,6 +60,8 @@ public class AnimalsControllerApi {
 
     @PostMapping("/add")
     public Animals addAnimal(@Valid @RequestBody Animals newAnimal){
-        return animalRepository.save(newAnimal);
+        Animals a1 = newAnimal;
+        animalRepository.save(newAnimal);
+        return a1;
     }
 }
