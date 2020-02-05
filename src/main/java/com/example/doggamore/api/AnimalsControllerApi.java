@@ -10,12 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api")
 public class AnimalsControllerApi {
 
     @Autowired
@@ -25,13 +27,13 @@ public class AnimalsControllerApi {
     AnimalRepository animalRepository;
 
     //Returning Animals to XML format
-    @GetMapping(value = "/api/xml/animals", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/xml/animals", produces = MediaType.APPLICATION_XML_VALUE)
     public List<Animals> getAllAnimalsXml(){
         return animalService.getAllAnimals();
     }
 
     //Returning one Animal by id to XML format
-    @GetMapping(value = "/api/xml/animals/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/xml/animals/{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Animals> getAnimalByIdXml(@PathVariable int id){
         Animals animals = animalService.getAnimalById(id);
         if (animals == null){
@@ -41,13 +43,13 @@ public class AnimalsControllerApi {
     }
 
     //Returning Animals to JSON format
-    @GetMapping(value = "/api/json/animals", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/json/animals", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Animals> getAllAnimalsJson(){
         return animalService.getAllAnimals();
     }
 
     //Returning one Animal by id to JSON format
-    @GetMapping(value = "/api/json/animals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/json/animals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Animals> getAnimalByIdJson(@PathVariable int id){
         Animals animals = animalService.getAnimalById(id);
         if (animals == null){
@@ -56,8 +58,8 @@ public class AnimalsControllerApi {
         return new ResponseEntity<Animals>(animals, HttpStatus.OK);
     }
 
-    @PostMapping("/animals/add")
-    public Animals addAnimal(@RequestBody Animals newAnimal){
+    @PostMapping("/add")
+    public Animals addAnimal(@Valid @RequestBody Animals newAnimal){
         return animalRepository.save(newAnimal);
     }
 }
