@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,8 +59,11 @@ public class AnimalsControllerApi {
     Map<Integer, Animals> anidata = new HashMap<Integer, Animals>();
 
     @PostMapping("/animals/add")
-    public Animals addAnimal(@RequestBody  Animals newAnimal){
-        anidata.put(newAnimal.getId(), newAnimal);
-        return animalRepository.save(newAnimal);
+    public ResponseEntity<Object    > addAnimal(@RequestBody Animals newAnimal){
+        Animals createdAnimal = animalRepository.save(newAnimal);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdAnimal.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 }

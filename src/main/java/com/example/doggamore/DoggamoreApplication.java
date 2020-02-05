@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class DoggamoreApplication {
 
-
-    @RequestMapping("/db")
-
     public static void main(String[] args) {
         SpringApplication.run(DoggamoreApplication.class, args);
     }
