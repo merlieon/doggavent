@@ -1,6 +1,6 @@
 package com.example.doggamore.controllers;
 
-import com.example.doggamore.models.Animals;
+import com.example.doggamore.models.Animal;
 import com.example.doggamore.repositories.AnimalRepository;
 import com.example.doggamore.services.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class AnimalController {
     @Autowired
     AnimalRepository animalRepository;
    @GetMapping("/animals")
-    public  Iterable<Animals> getAllAnimals(Model model){
+    public  Iterable<Animal> getAllAnimals(Model model){
 
         model.addAttribute("allAnimals", animalService.getAllAnimals());
         return animalService.getAllAnimals();
