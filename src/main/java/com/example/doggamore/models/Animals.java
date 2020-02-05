@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "animals")
 public class Animals implements Serializable {
 
     @Id
