@@ -21,16 +21,32 @@ public class EventControllerApi {
         return eventService.getAllEvents();
     }
 
+    //Returning Animal to XML format
+    @GetMapping(value = "/xml/event/{id}",  produces = MediaType.APPLICATION_XML_VALUE)
+    public Event getEventByIdXml(@PathVariable int id){
+        return eventService.getEventById(id);
+    }
+
     //Returning Animals to JSON format
     @GetMapping(value = "/json/events", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Event> getAllEventsJson(){
         return eventService.getAllEvents();
     }
 
+    //Returning Animal to XML format
+    @GetMapping(value = "/json/event/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public Event getEventByIdJson(@PathVariable int id){
+        return eventService.getEventById(id);
+    }
 
     @PostMapping(value = "event/add")
     public Event saveEvent(@RequestBody Event newEvent){
         return eventService.addEvent(newEvent);
+    }
+
+    @DeleteMapping(value = "event/{id}")
+    public void deleteEvent(@PathVariable int id){
+        eventService.deleteEvent(id);
     }
 
 }
