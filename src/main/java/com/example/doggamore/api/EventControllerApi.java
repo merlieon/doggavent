@@ -1,9 +1,12 @@
 package com.example.doggamore.api;
 
+import com.example.doggamore.models.Animal;
 import com.example.doggamore.models.Event;
 import com.example.doggamore.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +26,12 @@ public class EventControllerApi {
 
     //Returning Animal to XML format
     @GetMapping(value = "/xml/event/{id}",  produces = MediaType.APPLICATION_XML_VALUE)
-    public Event getEventByIdXml(@PathVariable int id){
-        return eventService.getEventById(id);
+    public ResponseEntity<Event> getEventByIdXml(@PathVariable int id){
+        Event event = eventService.getEventById(id);
+        if (event == null){
+            return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Event>(event, HttpStatus.OK);
     }
 
     //Returning Animals to JSON format
@@ -35,8 +42,12 @@ public class EventControllerApi {
 
     //Returning Animal to XML format
     @GetMapping(value = "/json/event/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public Event getEventByIdJson(@PathVariable int id){
-        return eventService.getEventById(id);
+    public ResponseEntity<Event> getEventByIdJson(@PathVariable int id){
+        Event event = eventService.getEventById(id);
+        if (event == null){
+            return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Event>(event, HttpStatus.OK);
     }
 
     @PostMapping(value = "event/add")
