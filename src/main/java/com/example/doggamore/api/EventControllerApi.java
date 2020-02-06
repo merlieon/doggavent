@@ -21,6 +21,13 @@ public class EventControllerApi {
         return eventService.getAllEvents();
     }
 
+    //Returning Animals to JSON format
+    @GetMapping(value = "/json/events", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Event> getAllEventsJson(){
+        return eventService.getAllEvents();
+    }
+
+
     @PostMapping(value = "event/add")
     public Event saveEvent(@RequestBody Event newEvent){
         return eventService.addEvent(newEvent);
