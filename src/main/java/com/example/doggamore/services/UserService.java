@@ -1,6 +1,5 @@
 package com.example.doggamore.services;
 
-import com.example.doggamore.models.Users;
 import com.example.doggamore.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
