@@ -4,25 +4,40 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "events")
-public class Event<U> extends Auditable<String>{
+public class Event<U> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "event_title")
-    String eventTitle;
+    private String eventTitle;
 
     @Column(name = "event_content")
-    String eventContent;
+    private String eventContent;
+
+    @CreatedBy
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @CreatedDate
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @LastModifiedBy
+    @Column(name = "last_modified_by")
+    private String lastModifiedBy;
+
+    @LastModifiedDate
+    @Column(name = "last_modified_date")
+    private Date lastModifiedDate;
 
     public Integer getId() {
         return id;
@@ -46,5 +61,37 @@ public class Event<U> extends Auditable<String>{
 
     public void setEventContent(String eventContent) {
         this.eventContent = eventContent;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }
