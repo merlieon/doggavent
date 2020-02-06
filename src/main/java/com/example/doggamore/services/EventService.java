@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 public class EventService {
@@ -25,4 +26,18 @@ public class EventService {
     public List<Event> getAllEvents(){
         return getEventList();
     }
+
+    public Event getEventById(int id){
+        Predicate<Event> byid = a -> a.getId().equals(id);
+        return filterEvents(byid);
+    }
+
+    private Event filterEvents(Predicate<Event> strategy){
+        return getAllEvents().stream().filter(strategy).findFirst().orElse(null);
+    }
+
+    public Event addEvent(Event event){
+        return eventRepository.save(event);
+    }
+
 }

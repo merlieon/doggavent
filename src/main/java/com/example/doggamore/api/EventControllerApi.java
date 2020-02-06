@@ -4,9 +4,7 @@ import com.example.doggamore.models.Event;
 import com.example.doggamore.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,9 @@ public class EventControllerApi {
         return eventService.getAllEvents();
     }
 
+    @PostMapping(value = "event/add")
+    public Event saveEvent(@RequestBody Event newEvent){
+        return eventService.addEvent(newEvent);
+    }
 
 }
