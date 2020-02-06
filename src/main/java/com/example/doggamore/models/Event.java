@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "events")
-public class Event<U> {
+public class Event<U> extends Auditable<String>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,22 +23,6 @@ public class Event<U> {
 
     @Column(name = "event_content")
     String eventContent;
-
-    @Column(name = "created_date")
-            @CreatedDate
-    Date createdDate;
-
-    @Column(name = "created_by")
-            @CreatedBy
-    U createdBy;
-
-    @Column(name = "updated_date")
-            @LastModifiedDate
-    Date updatedDate;
-
-    @Column(name = "updated_by")
-            @LastModifiedBy
-    U updatedBy;
 
     public Integer getId() {
         return id;
@@ -62,37 +46,5 @@ public class Event<U> {
 
     public void setEventContent(String eventContent) {
         this.eventContent = eventContent;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public U getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(U createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public U getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(U updatedBy) {
-        this.updatedBy = updatedBy;
     }
 }
