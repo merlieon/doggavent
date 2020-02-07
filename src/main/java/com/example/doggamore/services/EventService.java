@@ -44,6 +44,9 @@ public class EventService {
     public Event editEvent(Event updatedEvent, int id){
         return eventRepository.findAllById(id).map(e ->{
             e.setEventTitle(updatedEvent.getEventTitle());
+            e.setEventContent(updatedEvent.getEventContent());
+            e.setLastModifiedBy(updatedEvent.getLastModifiedBy());
+            e.setLastModifiedDate(updatedEvent.getLastModifiedDate());
             return eventRepository.save(e);
         }).orElseGet(() -> {
             updatedEvent.setId(id);
