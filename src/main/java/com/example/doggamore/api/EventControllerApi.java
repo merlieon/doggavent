@@ -2,6 +2,7 @@ package com.example.doggamore.api;
 
 import com.example.doggamore.models.Animal;
 import com.example.doggamore.models.Event;
+import com.example.doggamore.repositories.EventRepository;
 import com.example.doggamore.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,6 +20,8 @@ public class EventControllerApi {
     @Autowired
     EventService eventService;
 
+    @Autowired
+    EventRepository eventRepository;
     //Returning Animals to XML format
     @GetMapping(value = "/xml/events", produces = MediaType.APPLICATION_XML_VALUE)
     public List<Event> getAllEventsXml(){
@@ -53,6 +57,11 @@ public class EventControllerApi {
     @PostMapping(value = "event/add")
     public Event saveEvent(@RequestBody Event newEvent){
         return eventService.addEvent(newEvent);
+    }
+
+    @PutMapping(value = "event/{id}")
+    public Event editEvent(@Valid @RequestBody Event updatedEvent,@PathVariable int id){
+        return eventService.editEvent(updatedEvent, id);
     }
 
     @DeleteMapping(value = "event/{id}")

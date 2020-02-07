@@ -73,8 +73,6 @@ public class AnimalsControllerApi {
             updatedAnimal.setId(id);
             return animalRepository.save(updatedAnimal);
         });
-
-
     }
 
     @DeleteMapping("/animals/{id}")
