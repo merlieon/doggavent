@@ -36,13 +36,13 @@ public class UserControllerApi {
     }
 
     //Returning Animals to JSON format
-    @GetMapping(value = "/xml/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/json/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllUsersJson(){
         return userService.getAllUsers();
     }
 
     //Returning Animal to JSON format
-    @GetMapping(value = "/xml/user/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/json/user/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserByIdJson(@PathVariable int id){
         User user = userService.getUserById(id);
         if (user == null){
