@@ -8,24 +8,26 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class AnimalTypeControllerApi {
 
     @Autowired
     AnimalTypeService animalTypeService;
 
     //Returning all AnimalTypes to XML format
-    @GetMapping(value = "/api/xml/animaltypes", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/xml/animaltypes", produces = MediaType.APPLICATION_XML_VALUE)
     public List<AnimalType> getAllAnimalTypesXml(){
         return animalTypeService.getAllAnimalTypes();
     }
 
     //Returning one AnimalType by id to XML format
-    @GetMapping(value = "/api/xml/animaltypes/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/xml/animaltypes/{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<AnimalType> getAnimalTypeByIdXml(@PathVariable int id){
         AnimalType animalType = animalTypeService.getAnimalById(id);
         if (animalType == null){
@@ -35,13 +37,13 @@ public class AnimalTypeControllerApi {
     }
 
     //Returning all AnimalType to JSON format
-    @GetMapping(value = "/api/json/animaltypes", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/json/animaltypes", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<AnimalType> getAllAnimalTypesJson(){
         return animalTypeService.getAllAnimalTypes();
     }
 
     //Returning one AnimalType by id to JSON format
-    @GetMapping(value = "/api/json/animaltypes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/json/animaltypes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AnimalType> getAnimalTypeByIdJson(@PathVariable int id){
         AnimalType animalType = animalTypeService.getAnimalById(id);
         if  (animalType== null){
